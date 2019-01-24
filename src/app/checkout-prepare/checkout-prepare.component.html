@@ -1,0 +1,17 @@
+<!-- UserName:<input type="text" [(ngModel)]="userName">
+<button (click) ="search">search</button> -->
+<div *ngFor = " let pay of payment_options">
+    <h2> {{pay.paymentoption_id }}</h2>
+    <h2>{{pay.paymentoption_name}}</h2>
+</div>
+
+<div *ngFor = "let t of tickettypes" >
+  <h2>{{t.tickettype_avail_quantity}}</h2>
+  <h2>{{t.tickettype_id}}</h2>
+  <h2>{{t.tickettype_max_limt}}</h2>
+  <h2>{{t.tickettype_min_limit}}</h2>
+ <h2>{{t.tickettype_name}} </h2>
+  <h2>{{t.tickettype_onsale}}</h2>
+  <h2>{{t.tickettype_price}}</h2>
+
+</div>
