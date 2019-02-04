@@ -4,18 +4,26 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { CheckoutPrepareComponent } from './checkout-prepare/checkout-prepare.component';
 import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
+import { CheckoutCreateComponent } from './checkout-create/checkout-create.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CheckoutPrepareComponent
+    CheckoutPrepareComponent,
+    CheckoutCreateComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    RouterModule,
 
-    HttpClientModule
+
+    HttpClientModule,
+
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

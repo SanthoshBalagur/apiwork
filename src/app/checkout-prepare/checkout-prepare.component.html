@@ -1,17 +1,45 @@
-<!-- UserName:<input type="text" [(ngModel)]="userName">
-<button (click) ="search">search</button> -->
-<div *ngFor = " let pay of payment_options">
-    <h2> {{pay.paymentoption_id }}</h2>
-    <h2>{{pay.paymentoption_name}}</h2>
-</div>
+<h2 class="head">Eventzilla-Checkout/Prepare-API</h2>
 
-<div *ngFor = "let t of tickettypes" >
-  <h2>{{t.tickettype_avail_quantity}}</h2>
-  <h2>{{t.tickettype_id}}</h2>
-  <h2>{{t.tickettype_max_limt}}</h2>
-  <h2>{{t.tickettype_min_limit}}</h2>
- <h2>{{t.tickettype_name}} </h2>
-  <h2>{{t.tickettype_onsale}}</h2>
-  <h2>{{t.tickettype_price}}</h2>
-
-</div>
+<!-- <ul *ngFor="let t of tickettype">
+  <li>
+     <p> {{t.ttickettype}}</p> 
+  </li>
+</ul> -->
+<ul *ngFor= " let t of pay ">
+  <li>
+      <h2></h2> {{t.paymentoption_id}}
+       {{t.paymentoption_name}}
+  </li>
+  </ul>
+  <div *ngFor = "let t of tickettype"  >
+    <table class="table table-striped"><tr>
+      <td> Ticket-Quantity </td>
+      <td>Ticket-TypeId</td>
+      <td> Ticket-MaxLimit</td>
+       <td> Ticket-MinLimit</td>
+       <td> Ticket-Name </td>
+      <td>Ticket-Onsale</td>
+       <td> Ticket-price</td>
+  </tr>
+  <tr>
+  <td>{{t.tickettype_avail_quantity}}</td>
+  <!-- <td [(ngModel)]="tickettypeid">{{t.tickettype_id}}</td> -->
+    <td>{{t.tickettype_max_limt}}</td>
+    <td>{{t.tickettype_min_limit}}</td>
+   <td>{{t.tickettype_name}} </td>
+    <td>{{t.tickettype_onsale}}</td>
+   <td>{{t.tickettype_price}}</td> 
+   <!-- <input type="text" [ngModel]= "quantity"/>   -->
+   <select [(ngModel)]="quantity" name="Quantity">
+    <option *ngFor="let o of options">
+       {{o.name}}
+    </option>
+ </select>
+ <p>{{quantity}}*{{t.tickettype_price}}</p>
+  
+  </tr>
+</table>
+<!-- <h2 [(ngModel)]="tickettypeid">{{t.tickettype_id}}</h2> -->
+  
+<button [routerLink] ="['create/',quantity]" routerLinkActive ="active">next</button>
+    </div>
