@@ -1,45 +1,116 @@
-<h2 class="head">Eventzilla-Checkout/Prepare-API</h2>
+
+
+<h2 class="head">Event-Title Here</h2>
 
 <!-- <ul *ngFor="let t of tickettype">
   <li>
      <p> {{t.ttickettype}}</p> 
   </li>
 </ul> -->
-<ul *ngFor= " let t of pay ">
-  <li>
-      <h2></h2> {{t.paymentoption_id}}
-       {{t.paymentoption_name}}
-  </li>
-  </ul>
-  <div *ngFor = "let t of tickettype"  >
+<!-- 
+<div> 
+ {{dateid}} 
+</div> -->
+
+<form [formGroup]="myForm" (ngSubmit)="submitForm()">
+  <table  class="table table-dark" formArrayName="TicketDetails">
+      <thead>
+          <tr>
+    <th>TicketType</th>
+    <th>TicketPrice</th>
+    <th>Quantity</th>
+  </tr>
+      </thead>
+      <tbody>
+
+    <tr ngDefaultControl *ngFor="let item of myForm.get('TicketDetails').value; let i=index"
+             [formGroupName]="i"  >
+            
+
+  <td ngDefaultControl formControlName="TicketType"> {{item.TicketType}} </td>
+  <td ngDefaultControl formControlName="TicketPrice">${{item.TicketPrice}}</td> 
+ <td><input type='text'  ngDefaultControl  formControlName="Quantity"></td>
+
+            
+
+         </tr>
+         </tbody>
+         
+  </table>
+  <div style="text-align:center">
+  <button type  = "submit"  class="btn btn-primary">
+      Submit
+      </button>
+    </div>
+</form>
+<pre>{{myForm.value | json}}</pre>
+
+<!-- <button [routerLink]  ="['/create',eventid,dateid]" routerLinkActive ="active">next</button> --> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- <div   >
     <table class="table table-striped"><tr>
-      <td> Ticket-Quantity </td>
+       <td> Ticket-Quantity </td>
       <td>Ticket-TypeId</td>
       <td> Ticket-MaxLimit</td>
-       <td> Ticket-MinLimit</td>
-       <td> Ticket-Name </td>
-      <td>Ticket-Onsale</td>
-       <td> Ticket-price</td>
-  </tr>
-  <tr>
-  <td>{{t.tickettype_avail_quantity}}</td>
-  <!-- <td [(ngModel)]="tickettypeid">{{t.tickettype_id}}</td> -->
+       <td> Ticket-MinLimit</td> -->
+       <!-- <td> Ticket Type </td> -->
+      <!-- <td>Ticket-Onsale</td> -->
+       <!-- <td> Ticket-price</td>
+       <td> Quantity </td> -->
+  <!-- </tr> --> 
+  
+    
+
+  <!-- <tr *ngFor = "let t of tickettype ; let in = index" >
+  < <td>{{t.tickettype_avail_quantity}}</td>
+   <td>{{t.tickettype_id}}</td> 
     <td>{{t.tickettype_max_limt}}</td>
-    <td>{{t.tickettype_min_limit}}</td>
-   <td>{{t.tickettype_name}} </td>
-    <td>{{t.tickettype_onsale}}</td>
-   <td>{{t.tickettype_price}}</td> 
+    <td>{{t.tickettype_min_limit}}</td> -->
+   <!-- <td>{{t.tickettype_name}} </td>
+    <td>{{t.tickettype_onsale}}</td> -->
+   <!-- <td> ${{t.tickettype_price}} </td>  -->
    <!-- <input type="text" [ngModel]= "quantity"/>   -->
-   <select [(ngModel)]="quantity" name="Quantity">
+   <!-- <td>
+   <input type="text"   [(ngModel)]= "tickettype[in]" name="Quantity" 
+    min={{t.tickettype_min_limit}}  max= {{t.tickettype_max_limt}}> 
+  </td> --> 
+<!-- <pre >{{t.tickettype_max_limt|json}}</pre> -->
+
+
+    <!-- <select [(ngModel)]="quantity" name="Quantity" >
     <option *ngFor="let o of options">
        {{o.name}}
-    </option>
- </select>
- <p>{{quantity}}*{{t.tickettype_price}}</p>
-  
-  </tr>
+    </option> 
+  </select> -->
+
+ <!-- <select id="select-type-basic" [(ngModel)]="quantity">
+  <option *ngFor="let status_item of status_value">
+  {{status_item}}
+  </option>
+</select> -->
+
+
+  <!-- </tr>
+ 
+
 </table>
-<!-- <h2 [(ngModel)]="tickettypeid">{{t.tickettype_id}}</h2> -->
-  
-<button [routerLink] ="['create/',quantity]" routerLinkActive ="active">next</button>
-    </div>
+<h2 [(ngModel)]="tickettypeid">{{t.tickettype_id}}</h2>
+prepare/:eventid/:dateid  -->
+<!-- <button (click)="data(h,t)"> Input data</button> -->
+
+<!-- <button [routerLink]  ="['/create',eventid,dateid,t.tickettype_max_limt]" routerLinkActive ="active">next</button> -->
+    <!-- </div> --> 

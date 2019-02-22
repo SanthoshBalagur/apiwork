@@ -7,25 +7,36 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { CheckoutCreateComponent } from './checkout-create/checkout-create.component';
 import { RouterModule } from '@angular/router';
+import { CheckoutFillorderComponent } from './checkout-fillorder/checkout-fillorder.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { DataStorage } from 'src/app/dataprovider';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CheckoutPrepareComponent,
-    CheckoutCreateComponent
+    CheckoutCreateComponent,
+    CheckoutFillorderComponent,
+    
+    PageNotFoundComponent,
+    
+    HomeComponent,
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule,
-
+    ReactiveFormsModule,
 
     HttpClientModule,
 
     AppRoutingModule
   ],
-  providers: [],
+  providers: [DataStorage],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

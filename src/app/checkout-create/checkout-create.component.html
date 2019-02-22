@@ -1,10 +1,135 @@
 
       
      
-      <div>
-    Quantity-{{val}} 
+
+<!-- <div>
+    <input id="name" type="text" [ngModel]="fname" (ngModelChange)="newChange($event)"/>
+
+    Firstname: <input type="text"  [(ngModel)]= fname [ngModelOptions]="{standalone: true}">
+    Lastname:  <input type="text" [(ngModel)]="lname" [ngModelOptions]="{standalone: true}">
+    Email: <input type="text" [(ngModel)]="email" [ngModelOptions]="{standalone: true}">>
+  
+</div> -->
+<div >
+  <table  class="table table-dark">
+      <thead>
+          <tr>
+           
+            <th scope="col">TicketTypeName</th>
+            <th scope="col">TicketPrice</th>
+            <th scope="col">Quantity</th>
+          </tr>
+        </thead>
+  
+         <tbody>
+            <tr *ngFor = "let t of tickettdet.TicketDetails">
+              
+              <td>{{t.TicketType}}</td>
+              <td>${{t.TicketPrice}}</td>
+              <td>{{t.Quantity}}
+                </td>
+            </tr>
+          </tbody>
+</table>
 </div>
-EventID- {{eventid}}
-<div *ngFor="let t of ticketnew">
-<p>{{t.ticket_price_id}}</p>
+
+<button  (click)="
+      onSelect()">Submit</button> 
+<div [hidden]="IsHidden" class="jumbotron">
+<label>CheckoutID-{{CheckoutId}}</label>
+<label>Currency -{{Current}}</label>
+<label>EventZillaFee-{{EventZillaFee}}</label>
+<label>TransactionReference -{{TransactionReference}}</label>
+<label>TransactionTotal-{{TransactionTotal}}</label>
+<label>TransactionTax-{{TransactionTax}}</label>
+<label>Tickets-{{Tickets | json}}</label>
 </div>
+
+<form [formGroup]="myForm" (ngSubmit)="submitForm()">
+
+  <div formArrayName = "buyerdetails" *ngFor="let det of myForm.get('buyerdetails').controls; let i=index;">
+  <div [formGroupName]="i">
+    Buyer First Name: <input type="text" formControlName="buyer_firstname"><br>
+    Buyer Last Name: <input type="text" formControlName="buyer_lastname"><br>
+    Buyer Email: <input type="text" formControlName="buyer_email"><br>
+  </div>
+</div>
+
+    
+<div formArrayName="tickets" *ngFor="let item of myForm.get('tickets').controls; let i = index;">
+  <div [formGroupName]="i">
+    First Name: <input formControlName="first_name" placeholder="Item name"><br>
+    Last Name: <input formControlName="last_name" placeholder="Item description"><br>
+    Email: <input formControlName="email" placeholder="Item price"><br>
+    <br>
+  </div>
+</div>
+
+<button type="submit">
+        Submit
+    </button>
+</form>
+<pre>{{myForm.value | json}}</pre> -->
+
+
+ <form [formGroup]="myForm" (ngSubmit)="submitForm()">
+
+  <div formArrayName = "buyerdetails" *ngFor="let det of datas.get('buyerdetails').value; let i=index;">
+  <div [formGroupName]="i">
+    Buyer First Name: <input type="text" formControlName="eventid"><br>
+    Buyer Last Name: <input type="text" formControlName="eventdateid"><br>
+    Buyer Email: <input type="text" formControlName="buyer_email"><br>
+  </div>
+</div>
+<br><br>
+    
+
+<div formArrayName="tickets" *ngFor="let item of myForm.get('tickets').value; let i = index;">
+  <div [formGroupName]="i">
+    First Name: <input formControlName="first_name" placeholder="Firstname"><br>
+    Last Name: <input formControlName="last_name" placeholder="Lastname"><br>
+    Email: <input formControlName="email" placeholder="Email"><br>
+    <br>
+  </div>
+</div>
+
+<button type="submit">
+        Submit
+    </button>
+</form> 
+<h2 style= "text-align: center" >Payment Options</h2>
+ <div class="radio" *ngFor="let key of pay">
+    <label >
+           <input type="radio" name="Payment" [value]="key.paymentoption_id"  [(ngModel)]="paymentoptionid">
+             {{key.paymentoption_name}} {{paymentoptionid}}
+    </label>
+</div>
+
+
+
+<!-- <label class="container" >`
+    <input type="checkbox" checked="checked" name="Payment" [value]="key.paymentoption_id"  [(ngModel)]="paymentoptionid">
+    <span class="checkmark"> {{key.paymentoption_name}} {{paymentoptionid}}</span>
+  </label>
+<div class="form-check" >
+    <input type="radio" class="form-check-input" id="materialGroupExample1" name="Payment" [value]="key.paymentoption_id">
+    <label class="form-check-label" for="materialGroupExample1">
+        <input type="radio" class="form-check-input" id="materialGroupExample1" name="Payment" [value]="key.paymentoption_id"  [(ngModel)]="paymentoptionid">
+       
+      </label>
+  </div>
+  <!-- Enter the number of user details form to be created: <input type="text" formControlName= "val" [(ngModel)] = "val">&nbsp; -->
+ <!-- <button (click)="createTickets(val)">
+    Create
+</button><br><br>  
+
+         
+  <!-- <h2 style= "text-align: center" >Payment Options</h2>
+
+  <div style= "text-align: center" *ngFor= " let t of pay ">
+  
+      <input type="radio" value="{{t.paymentoption_id}}"> {{t.paymentoption_name}} 
+        
+          
+    </div> -->
+    
