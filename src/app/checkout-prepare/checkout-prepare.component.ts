@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http/';
 import { Router,NavigationExtras } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, FormArray } from '@angular/forms';
+
+
 import { urlevent } from 'src/models/Event';
 import { CreteEvent } from '../models/createevent';
 import { DataStorage } from '../dataprovider';
@@ -30,6 +32,8 @@ dateid:any;
 myForm:FormGroup;
 CreateEventObj:CreteEvent;
 TicketDetailsArray:any;
+MaxArray:any= [];
+MinArray:any;
 constructor( private fb:FormBuilder,private http :HttpClient,
  private EventService: EventService,private route: ActivatedRoute ,
  private data: DataStorage , private router: Router) {
@@ -51,6 +55,13 @@ constructor( private fb:FormBuilder,private http :HttpClient,
       this.Events = Events;
       this.pay = this.Events.payment_options;
       this.tickettype = this.Events.tickettypes;
+      debugger
+      var ticketmin = this.Events.tickettypes[0].tickettype_min_limit
+
+      var ticketmax = this.Events.tickettypes[0].tickettype_max_limt;
+      for(let i=ticketmin ; i<=ticketmax; i++){
+        this.MaxArray.push({'id':i})
+      }
       console.log(this.Events);
       for (let i = 0; i < this.tickettype.length; i++) {
       

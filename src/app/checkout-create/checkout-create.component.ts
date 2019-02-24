@@ -121,7 +121,7 @@ paymentoptionid:any;
   
    
   this.tickettdet = JSON.parse(this.ticketquant);
- debugger
+ 
       for (let i = 0; i < this.tickettdet.TicketDetails.length; i++) {
     this.Tickets = this.datas.get('ticket_types') as FormArray;
     this.Tickets.push(this.createTickettypes( this.tickettdet.TicketDetails[i].TicketTypeId,
@@ -211,6 +211,7 @@ this.myForm = this.fb.group({
     this.EventService.checkoutfillorder(this.myForm.value).subscribe(_fillorder =>
       {
       this.filorder =_fillorder;
+      
       console.log(this.filorder);
       });
   }

@@ -29,7 +29,11 @@
 
   <td ngDefaultControl formControlName="TicketType"> {{item.TicketType}} </td>
   <td ngDefaultControl formControlName="TicketPrice">${{item.TicketPrice}}</td> 
- <td><input type='text'  ngDefaultControl  formControlName="Quantity"></td>
+ <td>
+   <select  formControlName="Quantity" >
+   <option *ngFor= " let c of MaxArray"  [ngValue] = "c"> {{c.id}}</option>
+   </select>
+ </td>
 
             
 
@@ -43,7 +47,7 @@
       </button>
     </div>
 </form>
-<pre>{{myForm.value | json}}</pre>
+<pre>{{myForm.value|json}}</pre>
 
 <!-- <button [routerLink]  ="['/create',eventid,dateid]" routerLinkActive ="active">next</button> --> -->
 

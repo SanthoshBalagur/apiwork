@@ -45,65 +45,41 @@
 <label>Tickets-{{Tickets | json}}</label>
 </div>
 
-<form [formGroup]="myForm" (ngSubmit)="submitForm()">
 
-  <div formArrayName = "buyerdetails" *ngFor="let det of myForm.get('buyerdetails').controls; let i=index;">
-  <div [formGroupName]="i">
+
+
+<form *ngIf = "myForm" [formGroup]="myForm" (ngSubmit)="submitForm()">
+
+    <div formArrayName = "buyerdetails" *ngFor="let det of myForm.get('buyerdetails').controls; let i=index;">
+    <div [formGroupName]="i">
     Buyer First Name: <input type="text" formControlName="buyer_firstname"><br>
     Buyer Last Name: <input type="text" formControlName="buyer_lastname"><br>
     Buyer Email: <input type="text" formControlName="buyer_email"><br>
-  </div>
-</div>
-
+    </div>
+    </div>
     
-<div formArrayName="tickets" *ngFor="let item of myForm.get('tickets').controls; let i = index;">
-  <div [formGroupName]="i">
+    
+    <div formArrayName="tickets" *ngFor="let item of myForm.get('tickets').controls; let i = index;">
+    <div [formGroupName]="i">
     First Name: <input formControlName="first_name" placeholder="Item name"><br>
     Last Name: <input formControlName="last_name" placeholder="Item description"><br>
     Email: <input formControlName="email" placeholder="Item price"><br>
     <br>
-  </div>
-</div>
-
-<button type="submit">
-        Submit
-    </button>
-</form>
-<pre>{{myForm.value | json}}</pre> -->
-
-
- <form [formGroup]="myForm" (ngSubmit)="submitForm()">
-
-  <div formArrayName = "buyerdetails" *ngFor="let det of datas.get('buyerdetails').value; let i=index;">
-  <div [formGroupName]="i">
-    Buyer First Name: <input type="text" formControlName="eventid"><br>
-    Buyer Last Name: <input type="text" formControlName="eventdateid"><br>
-    Buyer Email: <input type="text" formControlName="buyer_email"><br>
-  </div>
-</div>
-<br><br>
-    
-
-<div formArrayName="tickets" *ngFor="let item of myForm.get('tickets').value; let i = index;">
-  <div [formGroupName]="i">
-    First Name: <input formControlName="first_name" placeholder="Firstname"><br>
-    Last Name: <input formControlName="last_name" placeholder="Lastname"><br>
-    Email: <input formControlName="email" placeholder="Email"><br>
-    <br>
-  </div>
-</div>
-
-<button type="submit">
-        Submit
-    </button>
-</form> 
-<h2 style= "text-align: center" >Payment Options</h2>
- <div class="radio" *ngFor="let key of pay">
+    </div>
+    </div>
+    <div class="radio" *ngFor="let key of pay">
     <label >
-           <input type="radio" name="Payment" [value]="key.paymentoption_id"  [(ngModel)]="paymentoptionid">
-             {{key.paymentoption_name}} {{paymentoptionid}}
+    <input type="radio" name="Payment" [value]="key.paymentoption_id" [(ngModel)]="paymentoptionid" [ngModelOptions]="{standalone: true}">
+    {{key.paymentoption_name}} {{paymentoptionid}}
     </label>
-</div>
+    </div> 
+    
+    <button type="submit">
+    Submit
+    </button>
+    
+    </form>
+
 
 
 
